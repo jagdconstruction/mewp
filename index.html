@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MEWP Inspection</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+  <header class="toolbar topbar">
+    <div class="toolbar-actions">
+      <button class="btn" data-action="reset" type="button">Reset</button>
+      <button class="btn primary" data-action="save" type="button">Save PDF</button>
+    </div>
+    <div class="toolbar-title">MEWP Inspection</div>
+  </header>
+
+  <main class="shell">
+    <section class="card hero-card">
+      <h1>Pre-use Inspection: Mobile Elevating Work Platforms</h1>
+      <p class="muted">Mobile entry form. Saved PDF matches the original inspection sheet and appends photo pages when needed.</p>
+      <p class="muted"><strong>AR</strong> means <strong>Action Required</strong>.</p>
+    </section>
+
+    <section class="card">
+      <h2>Project & Unit</h2>
+      <div class="grid two">
+        <label class="field">
+          <span>Project</span>
+          <select id="project"></select>
+        </label>
+        <label class="field">
+          <span>Report Date</span>
+          <input id="reportDate" type="date" />
+        </label>
+        <label class="field">
+          <span>Shift</span>
+          <select id="shift"></select>
+        </label>
+        <label class="field">
+          <span>Unit Make/Model/No.</span>
+          <select id="unit"></select>
+        </label>
+      </div>
+    </section>
+
+    <div id="sections"></div>
+
+    <section class="card">
+      <h2>Notes</h2>
+      <label class="field">
+        <span>Notes</span>
+        <textarea id="notes" rows="6" placeholder="Notes"></textarea>
+      </label>
+    </section>
+
+    <section class="card" id="filledByCard">
+      <h2>Filled By</h2>
+      <div class="grid two">
+        <label class="field">
+          <span>Printed Name</span>
+          <input id="printedName" type="text" placeholder="Printed name" />
+        </label>
+        <label class="field">
+          <span>Date</span>
+          <input id="filledDate" type="date" />
+        </label>
+      </div>
+      <div class="signature-row">
+        <div class="sig-label">Signature</div>
+        <button id="sigBtn" class="btn" type="button">Sign</button>
+        <div id="sigPreview" class="sig-preview">No signature saved</div>
+      </div>
+      <p class="muted">Signature appears on the bottom of the saved inspection page.</p>
+    </section>
+
+    <footer class="toolbar bottom-toolbar">
+      <button class="btn" data-action="reset" type="button">Reset</button>
+      <button class="btn primary" data-action="save" type="button">Save PDF</button>
+    </footer>
+  </main>
+
+  <input id="photoPicker" class="hidden" type="file" accept="image/*" multiple />
+
+  <div id="sigModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <strong>Signature</strong>
+          <div class="muted small">Tap, draw, then save.</div>
+        </div>
+        <button id="sigClose" class="icon-btn" type="button" aria-label="Close">✕</button>
+      </div>
+      <canvas id="sigCanvas"></canvas>
+      <div class="modal-actions">
+        <button id="sigClear" class="btn" type="button">Clear</button>
+        <button id="sigCancel" class="btn" type="button">Cancel</button>
+        <button id="sigSave" class="btn primary" type="button">Save Signature</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
